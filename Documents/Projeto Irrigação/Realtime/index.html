@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sistema de Irrigação</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      
+      <p><h1>SISTEMA DE IRRIGAÇÃO AUTOMATIZADO</h1></p>
+      <table class="table table-striped" id="table">
+    		<thead>
+    			<tr>
+            <th>Umidade do Ar (h)</th>
+    				<th>Temperatura (c°)</th>
+          </tr>
+          <tr>
+            <th><h1 id="sensor_H"></h1></th>
+    				<th><h1 id="sensor_T"></h1></th>
+          </tr>
+    		</thead>
+    		<tbody>
+    		</body>
+    	</table>
+    </div>
+    <script src="firebase.js"></script>
+  </body>
+</html>
