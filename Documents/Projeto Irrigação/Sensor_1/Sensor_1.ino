@@ -1,4 +1,4 @@
-// ATUALIZAÇÃO 28/04/2019
+// ATUALIZAÇÃO 10/06/2019
 
 
 #define BLYNK_PRINT Serial    

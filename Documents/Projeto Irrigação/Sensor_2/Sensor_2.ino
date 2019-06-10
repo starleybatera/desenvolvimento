@@ -9,13 +9,13 @@ SimpleTimer timer;
 #define pinUmiD 5
 
 unsigned long tempoInicial = 0;
-unsigned long intervalo = 60 * 1000; //Definindo 2 min de execução do sensor antes do descanso.
+unsigned long intervalo = 30 * 1000; 
 int umidade = 0;
 int umidade_media = 0;
 int contador = 0;
 
 
-uint32_t tempo_sono = 60 * 1000000; // Definindo 60 segundos de descanso para o sensor.
+uint32_t tempo_sono = 900 * 1000000; // Definindo 60 segundos de descanso para o sensor.
 
 WidgetBridge bridge1(V1); // Definindo o objeto que criar o link com o servidor.
 
@@ -65,7 +65,7 @@ void loop(){
 }
 void Sensor(){ 
   
-  float tensao = (umidade_media * (7 / 1024.0));       
+  float tensao = (umidade_media * (5 / 1024.0));       
   Serial.println("");
   Serial.print("TENSAO: ");
   Serial.print(tensao);
