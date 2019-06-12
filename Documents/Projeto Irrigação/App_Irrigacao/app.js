@@ -48,11 +48,11 @@
   var currentBombValue = false;
   bombRef.on('value', function(snapshot){
     var value = snapshot.val();
-    var el = document.getElementById('currentBomb')
+    var bomb = document.getElementById('currentBomb')
     if(value){
-      el.classList.add('amber-text');
+      bomb.classList.add('amber-text');
     }else{
-      el.classList.remove('amber-text');
+      bomb.classList.remove('amber-text');
     }
     currentBombValue = !!value;
   });
