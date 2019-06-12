@@ -1,6 +1,6 @@
 
 
-// ATUALIZAÇÃO 31/05/2019
+// ATUALIZAÇÃO 12/06/2019
 
 /*------------------------------------DECLARAÇÃO DOS INCLUDES----------------------------------------------------------------------------*/
 #include <ESP8266WiFi.h>
@@ -361,7 +361,3 @@ boolean EstaIrrigando(){
   
   return irrigando != NULL;
 }
-
-
-
-
