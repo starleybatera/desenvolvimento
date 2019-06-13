@@ -47,7 +47,7 @@
   // });
 
   // // Registrar função ao alterar valor do sensor de chuva
-  //var statusChuva = false;
+  
   chuvaRef.on('value', function(snapshot){
     var value = snapshot.val();
     var chuva = document.getElementById('currentChuva')
@@ -57,7 +57,7 @@
     }else{
       chuva.innerText =  "TEMPO CHUVOSO !"
     }
-    //currentBombValue = !!value;
+    
   });
 
   // // Registrar função ao alterar valor da bomba dagua
