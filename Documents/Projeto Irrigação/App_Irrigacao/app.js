@@ -20,16 +20,18 @@
   var tempRef = db.ref('sensor_T');
   var umidRef = db.ref('sensor_H');
   var sensor1Ref = db.ref('sensor1_H');
+  var tensao1Ref = db.ref('sensor1_T')
   //var presenceRef = db.ref('presence');
   var bombRef = db.ref('bomba');
 
 
   // Registra as funções que atualizam os gráficos e dados atuais da telemetria
   //tempRef.on('value', onNewData('currentTemp', 'tempLineChart' , 'Temperatura', 'C°'));
-  chuvaRef.on('value', snap => currentChuva.innerText = snap.val());
+  //chuvaRef.on('value', snap => currentChuva.innerText = snap.val());
   tempRef.on('value', snap => currentTemp.innerText = snap.val());
   umidRef.on('value', snap => currentUmid.innerText = snap.val());
   sensor1Ref.on('value', snap => currentUmidSensor1.innerText = snap.val());
+  tensao1Ref.on('value', snap => currentTensoSensor1.innerText = snap.val());
   //umidRef.on('value', onNewData('currentUmid', 'umidLineChart' , 'Umidade', '%'));
 
 
@@ -44,6 +46,20 @@
   //   }
   // });
 
+  // // Registrar função ao alterar valor do sensor de chuva
+  //var statusChuva = false;
+  chuvaRef.on('value', function(snapshot){
+    var value = snapshot.val();
+    var chuva = document.getElementById('currentChuva')
+    console.log("Nivel sensor chuva: ", value);
+    if(value == 1024){
+      chuva.innerText = "TEMPO NORMAL"
+    }else{
+      chuva.innerText =  "TEMPO CHUVOSO !"
+    }
+    //currentBombValue = !!value;
+  });
+
   // // Registrar função ao alterar valor da bomba dagua
   var currentBombValue = false;
   bombRef.on('value', function(snapshot){
@@ -56,6 +72,7 @@
     }
     currentBombValue = !!value;
   });
+
 
   // Registrar função de click no botão de ligar e desligar a bomba
   var btnbomb = document.getElementById('btn-bomb');

@@ -38,7 +38,10 @@
           font-size: 5em;
         }
       }
-
+      .text {
+        font-size: 4em;
+        margin-top: 15px !important;
+      }
     </style>
 
   </head>
@@ -57,27 +60,7 @@
       <br/>
       <div class="row">
 
-          <div class="col s12 m6">
-              <div class="card">
-                <div class="card-image center">
-                  <span id="currentChuva" class="statistic">-</span>%
-                </div>
-                <div class="card-content activator">
-                  <span class="card-title grey-text text-darken-4">
-                    Nível de Chuva
-                    <i class="material-icons right">more_vert</i>
-                  </span>
-                  Clique para ver histórico
-                </div>
-                <div class="card-reveal">
-                  <span class="card-title grey-text text-darken-4">
-                    Histórico
-                    <i class="material-icons right">close</i>
-                  </span>
-                  <canvas id=""></canvas>
-                </div>
-              </div>
-            </div>
+          
         <div class="col s12 m6">
           <div class="card">
             <div class="card-image center">
@@ -144,11 +127,32 @@
         <div class="col s12 m6">
           <div class="card">
             <div class="card-image center">
-              <span id="currentUmidSensor2" class="statistic">-</span>%
+              <span id="currentTensoSensor1" class="statistic">-</span>v
             </div>
             <div class="card-content activator">
               <span class="card-title grey-text text-darken-4">
-                Umidade do Solo (Sensor 2)
+                Tensão (Sensor 1)
+                <i class="material-icons right">more_vert</i>
+              </span>
+              Clique para ver histórico
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">
+                Histórico
+                <i class="material-icons right">close</i>
+              </span>
+              <canvas id=""></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6">
+          <div class="card">
+            <div class="card-image center">
+              <span id="currentChuva" class="text">-</span>
+            </div>
+            <div class="card-content activator">
+              <span class="card-title grey-text text-darken-4">
+                Condição do Tempo
                 <i class="material-icons right">more_vert</i>
               </span>
               Clique para ver histórico
