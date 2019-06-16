@@ -55,11 +55,13 @@ Sensores *irrigando = new Sensores();
 void AtualizaLeituraSensor(Sensores *S);// FUNÇÃO RESPONSÁVEL EM FAZER AS ANÁLISES SE PRECISA IRRIGAR A ÁREA DO SENSOR.
 void RemoverSensorFila(int index); // FUNÇÃO RESPONSÁVEL EM REMOVER UM SENSOR DA FILA.
 void ImprimirLista(); // FUNÇÃO RESPONSÁVEL EM IMPRIMIR OS ELEMENTOS EXISTENTE NA FILA.
-void Irrigar(String nomeSensor); // FUNÇÃO RESPONSÁVEL EM INICIAR E FINALIZAR OS ATUADORES E BOMBA D'ÁGUA.
+void Irrigar(); // FUNÇÃO RESPONSÁVEL EM INICIAR E FINALIZAR OS ATUADORES E BOMBA D'ÁGUA.
 void InserirSensorFila(Sensores *S);// FUNÇÃO RESPONSÁVEL EM INSERIR ELEMENTO NA LISTA.
 boolean  BuscarSensor(String nomeSensor);// FUNÇÃO RESPONSÁVEL EM BUSCAR ELEMENTO NA LISTA.
 int BuscarIndexSensor(String nomeSensor);// FUNÇÃO RESPONSÁVEL EM BUSCAR ELEMENTO NA LISTA.
 void ParardeIrrigar(String setor);
+void ControleIrrigacao();
+boolean EstaIrrigando();
 
 
 /*--------------------------------------INICIALIZANDO AS VARIÁVEIS DE CONEXÃO------------------------------------------------------------------ */
@@ -218,12 +220,12 @@ if(EstaIrrigando() && irrigando->hum < 20){ // ESTÁ IRRIGANDO E SENSOR ATUALIZA
   lcdVirtual.print(4,0, irrigando->sen);
   lcdVirtual.print(3,1, "IRRIGANDO ...");
   Blynk.virtualWrite(V6, irrigando->hum);
-  Blynk.virtualWrite(V7, irrigando->volt);]
-  if(irrigando->sens.equals("SENSOR 1")){
+  Blynk.virtualWrite(V7, irrigando->volt);
+  if(irrigando->sen.equals("SENSOR 1")){
     Firebase.setFloat("sensor1_H", irrigando->hum);
     Firebase.setFloat("sensor1_T", irrigando->volt);
   }
-  if(irrigando->sens.equals("SENSOR 2")){
+  if(irrigando->sen.equals("SENSOR 2")){
     Firebase.setFloat("sensor2_H", irrigando->hum);
     Firebase.setFloat("sensor2_T", irrigando->volt);
   }
