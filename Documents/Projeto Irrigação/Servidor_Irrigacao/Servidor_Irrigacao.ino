@@ -218,9 +218,16 @@ if(EstaIrrigando() && irrigando->hum < 20){ // ESTÁ IRRIGANDO E SENSOR ATUALIZA
   lcdVirtual.print(4,0, irrigando->sen);
   lcdVirtual.print(3,1, "IRRIGANDO ...");
   Blynk.virtualWrite(V6, irrigando->hum);
-  Blynk.virtualWrite(V7, irrigando->volt);
-  Firebase.setFloat("sensor1_H", irrigando->hum);
-  Firebase.setFloat("sensor1_T", irrigando->volt);
+  Blynk.virtualWrite(V7, irrigando->volt);]
+  if(irrigando->sens.equals("SENSOR 1")){
+    Firebase.setFloat("sensor1_H", irrigando->hum);
+    Firebase.setFloat("sensor1_T", irrigando->volt);
+  }
+  if(irrigando->sens.equals("SENSOR 2")){
+    Firebase.setFloat("sensor2_H", irrigando->hum);
+    Firebase.setFloat("sensor2_T", irrigando->volt);
+  }
+  
   delay(1000);
 }
 if(!EstaIrrigando() && listaSensores.size() == 0 ){ // NÃO ESTÁ IRRIGANDO E  TAM LISTA É IGUAL QUE 0
