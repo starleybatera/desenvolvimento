@@ -20,7 +20,9 @@
   var tempRef = db.ref('sensor_T');
   var umidRef = db.ref('sensor_H');
   var sensor1Ref = db.ref('sensor1_H');
-  var tensao1Ref = db.ref('sensor1_T')
+  var tensao1Ref = db.ref('sensor1_T');
+  var sensor2Ref = db.ref('sensor2_H');
+  var tensao2Ref = db.ref('sensor2_T');
   //var presenceRef = db.ref('presence');
   var bombRef = db.ref('bomba');
 
@@ -32,6 +34,8 @@
   umidRef.on('value', snap => currentUmid.innerText = snap.val());
   sensor1Ref.on('value', snap => currentUmidSensor1.innerText = snap.val());
   tensao1Ref.on('value', snap => currentTensoSensor1.innerText = snap.val());
+  sensor2Ref.on('value', snap => currentUmidSensor2.innerText = snap.val());
+  tensao2Ref.on('value', snap => currentTensoSensor2.innerText = snap.val());
   //umidRef.on('value', onNewData('currentUmid', 'umidLineChart' , 'Umidade', '%'));
 
 
