@@ -19,7 +19,7 @@ uint32_t tempo_sono = 900 * 1000000; // Definindo 60 segundos de descanso para o
 
 WidgetBridge bridge1(V1); // Definindo o objeto que criar o link com o servidor.
 
-char auth[] = "e855ce495cc54f60bf0050bb1b18052e"; 
+char auth[] = "7b1dbd433bc44d36bd5f496abf2bcd93"; 
 char ssid[] = "MERCUSYS_AEBA";
 char pass[] = " ";
 
@@ -32,11 +32,13 @@ BLYNK_CONNECTED() {
 }
  
 void setup(){
-  Serial.begin(9600);
+  Serial.begin(115200);
   Blynk.begin(auth, ssid, pass);
   pinMode(pinUmiA, INPUT);
   pinMode(pinUmiD, OUTPUT);
   digitalWrite(pinUmiD, LOW);
+  Serial.println("");
+  Serial.print("INICIANDO O SISTEMA ");
 }
 
 void loop(){
@@ -82,4 +84,3 @@ void Sleep(){
   ESP.deepSleep(tempo_sono);
   
 }
-
