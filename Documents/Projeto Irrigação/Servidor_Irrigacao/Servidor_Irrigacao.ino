@@ -62,6 +62,7 @@ int BuscarIndexSensor(String nomeSensor);// FUNÇÃO RESPONSÁVEL EM BUSCAR ELEM
 void ParardeIrrigar(String setor);
 void ControleIrrigacao();
 boolean EstaIrrigando();
+void AtualizarBanco(String sen, int hum, float volt);
 
 
 /*--------------------------------------INICIALIZANDO AS VARIÁVEIS DE CONEXÃO------------------------------------------------------------------ */
@@ -87,14 +88,17 @@ BLYNK_WRITE(V2){
   int umidade = map( param[2].asInt(),0,1024, 100, 0); 
   sensor.hum = umidade;
 
-  /*Serial.print(sensor.sen);
-  Serial.print(" : ");
-  Serial.print(sensor.hum);
-  Serial.print(" : ");
-  Serial.print(sensor.volt);
-  Serial.println("");
-  */
+//  Serial.print(sensor.sen);
+//  Serial.print(" : ");
+//  Serial.print(sensor.hum);
+//  Serial.print(" : ");
+//  Serial.print(sensor.volt);
+//  Serial.println("");
 
+  
+  AtualizarBanco(sensor.sen, sensor.hum, sensor.volt);
+
+  
   if(irrigando != NULL && sensor.sen == irrigando->sen){
      *irrigando = sensor;
   }
@@ -146,13 +150,9 @@ void loop()
 /*------SENSOR DE TEMPERATURA E UMIDADE DO AR--------------*/
         float h = dht.readHumidity();
         float t = dht.readTemperature();         
-        Serial.print("UMIDADE DO AR: ");
-        Serial.print(h);
-        Serial.print("%  ");
+        
         Blynk.virtualWrite(V11,h);
-        Serial.print("TEMPERATURA:  ");
-        Serial.print(t); 
-        Serial.println("C  ");
+        
         Blynk.virtualWrite(V10,t);
         Firebase.setFloat("sensor_H", h);
         Firebase.setFloat("sensor_T", t);
@@ -164,11 +164,6 @@ void loop()
         lcdVirtual.clear();
         Firebase.setFloat("sensor_chuva", chuva);
         if(chuva < 600){
-           Serial.print("NIVEL DE CHUVA: ");
-           Serial.print(chuva);
-           Serial.print("  SISTEMA DESATIVADO !!");
-           Serial.println();
-           Serial.println();
            lcdVirtual.print(4,0, "SISTEMA");
            lcdVirtual.print(2,1, "DESATIVADO !!");
            Blynk.virtualWrite(V6,0);
@@ -177,11 +172,7 @@ void loop()
           }
 
         if(chuva > 600){
-           Serial.print("NIVEL DE CHUVA: ");
-           Serial.print(chuva);
-           Serial.print("  SISTEMA ATIVADO !!");
-           Serial.println();
-           Serial.println();
+           
            ControleIrrigacao();
               
            }     
@@ -221,15 +212,6 @@ if(EstaIrrigando() && irrigando->hum < 20){ // ESTÁ IRRIGANDO E SENSOR ATUALIZA
   lcdVirtual.print(3,1, "IRRIGANDO ...");
   Blynk.virtualWrite(V6, irrigando->hum);
   Blynk.virtualWrite(V7, irrigando->volt);
-  if(irrigando->sen.equals("SENSOR 1")){
-    Firebase.setFloat("sensor1_H", irrigando->hum);
-    Firebase.setFloat("sensor1_T", irrigando->volt);
-  }
-  if(irrigando->sen.equals("SENSOR 2")){
-    Firebase.setFloat("sensor2_H", irrigando->hum);
-    Firebase.setFloat("sensor2_T", irrigando->volt);
-  }
-  
   delay(1000);
 }
 if(!EstaIrrigando() && listaSensores.size() == 0 ){ // NÃO ESTÁ IRRIGANDO E  TAM LISTA É IGUAL QUE 0
@@ -369,4 +351,32 @@ void ParardeIrrigar(String setor){
 boolean EstaIrrigando(){
   
   return irrigando != NULL;
+}
+
+void AtualizarBanco(String sen, int hum, float volt){
+  
+// ATUALIZANDO DADOS NO BANCO DE DADOS FIREBASE
+
+  if(sen.equals("SENSOR 1")){
+    Firebase.setFloat("sensor1_H", hum);
+    Firebase.setFloat("sensor1_T", volt);
+    Serial.print("ENTROU NO IF SENSOR 1: ");
+    Serial.print(sen);
+    Serial.print(" : ");
+    Serial.print(hum);
+    Serial.print(" : ");
+    Serial.println(volt);
+    
+  }
+  if(sen.equals("SENSOR 2")){
+    Firebase.setFloat("sensor2_H", hum);
+    Firebase.setFloat("sensor2_T", volt);
+    Serial.print("ENTROU NO IF SENSOR 2: ");
+    Serial.print(sen);
+    Serial.print(" : ");
+    Serial.print(hum);
+    Serial.print(" : ");
+    Serial.println(volt);
+  
+  }  
 }
