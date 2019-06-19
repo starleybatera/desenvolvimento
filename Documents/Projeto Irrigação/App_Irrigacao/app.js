@@ -23,6 +23,7 @@
   var tensao1Ref = db.ref('sensor1_T');
   var sensor2Ref = db.ref('sensor2_H');
   var tensao2Ref = db.ref('sensor2_T');
+  var piquete_irrigandoRef = db.ref('piquete_irrigando');
   //var presenceRef = db.ref('presence');
   var bombRef = db.ref('bomba');
 
@@ -36,7 +37,8 @@
   tensao1Ref.on('value', snap => currentTensoSensor1.innerText = snap.val());
   sensor2Ref.on('value', snap => currentUmidSensor2.innerText = snap.val());
   tensao2Ref.on('value', snap => currentTensoSensor2.innerText = snap.val());
-  //umidRef.on('value', onNewData('currentUmid', 'umidLineChart' , 'Umidade', '%'));
+  
+  //umidRef.on('value', graficoCorrente('currentUmid', 'umidLineChart' , 'Umidade', '%'));
 
 
   // Registrar função ao alterar valor de presença
@@ -50,8 +52,15 @@
   //   }
   // });
 
-  // // Registrar função ao alterar valor do sensor de chuva
+  // // Registrar função ao alterar valor do Piquete q está sendo irrigado
   
+  piquete_irrigandoRef.on('value', function(snapshot){
+    var value = snapshot.val();
+    var chuva = document.getElementById('currentIrrigando')
+      chuva.innerText =  value
+    
+  });
+
   chuvaRef.on('value', function(snapshot){
     var value = snapshot.val();
     var chuva = document.getElementById('currentChuva')
@@ -88,20 +97,20 @@
 
 
 // Retorna uma função que de acordo com as mudanças dos dados
-// Atualiza o valor atual do elemento, com a metrica passada (currentValueEl e metric)
+// Atualiza o valor atual do elemento, com a metrica passada (valorCorrenteEl e metrica)
 // e monta o gráfico com os dados e descrição do tipo de dados (chartEl, label)
-function onNewData(currentValueEl, chartEl, label, metric){
+function graficoCorrente(valorCorrenteEl, chartEl, label, metrica){
   return function(snapshot){
-    var readings = snapshot.val();
-    if(readings){
-        var currentValue;
+    var lendo = snapshot.val();
+    if(lendo){
+        var valorCorrente;
         var data = [];
-        for(var key in readings){
-          currentValue = readings[key]
-          data.push(currentValue);
+        for(var key in lendo){
+          valorCorrente = lendo[key]
+          data.push(valorCorrente);
         }
 
-        document.getElementById(currentValueEl).innerText = currentValue + ' ' + metric;
+        document.getElementById(valorCorrenteEl).innerText = valorCorrente + ' ' + metrica;
         buildLineChart(chartEl, label, data);
     }
   }
