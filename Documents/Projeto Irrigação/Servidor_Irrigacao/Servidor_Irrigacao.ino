@@ -69,7 +69,7 @@ void AtualizarBanco(String sen, int hum, float volt);
 
 char auth[] = "06efe120dc2b424ebb560303ec6f5eeb";
 char ssid[] = "MERCUSYS_AEBA";
-char pass[] = " ";
+char pass[] = "";
 
 
 
@@ -177,7 +177,6 @@ void loop()
               
            }     
   }
-
 }
 
 /*FUNÇÕES DO SISTEMA */
