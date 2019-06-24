@@ -69,7 +69,7 @@ void AtualizarBanco(String sen, int hum, float volt);
 
 char auth[] = "06efe120dc2b424ebb560303ec6f5eeb";
 char ssid[] = "MERCUSYS_AEBA";
-char pass[] = "";
+char pass[] = " ";
 
 
 
@@ -177,6 +177,7 @@ void loop()
               
            }     
   }
+
 }
 
 /*FUNÇÕES DO SISTEMA */
@@ -211,6 +212,8 @@ if(EstaIrrigando() && irrigando->hum < 20){ // ESTÁ IRRIGANDO E SENSOR ATUALIZA
   lcdVirtual.print(3,1, "IRRIGANDO ...");
   Blynk.virtualWrite(V6, irrigando->hum);
   Blynk.virtualWrite(V7, irrigando->volt);
+
+  Firebase.setFloat("sensor1_H", hum);.
   delay(1000);
 }
 if(!EstaIrrigando() && listaSensores.size() == 0 ){ // NÃO ESTÁ IRRIGANDO E  TAM LISTA É IGUAL QUE 0
