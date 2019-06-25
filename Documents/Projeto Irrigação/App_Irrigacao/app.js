@@ -24,21 +24,21 @@
   var sensor2Ref = db.ref('sensor2_H');
   var tensao2Ref = db.ref('sensor2_T');
   var piquete_irrigandoRef = db.ref('piquete_irrigando');
-  //var presenceRef = db.ref('presence');
   var bombRef = db.ref('bomba');
 
 
-  // Registra as funções que atualizam os gráficos e dados atuais da telemetria
-  //tempRef.on('value', onNewData('currentTemp', 'tempLineChart' , 'Temperatura', 'C°'));
+  
+  //tempRef.on('value', graficoCorrente('currentTemp', 'tempLineChart' , 'Temperatura', 'C°'));
+  //umidRef.on('value', graficoCorrente('currentUmid', 'umidLineChart' , 'Umidade', '%'));
   //chuvaRef.on('value', snap => currentChuva.innerText = snap.val());
   tempRef.on('value', snap => currentTemp.innerText = snap.val());
   umidRef.on('value', snap => currentUmid.innerText = snap.val());
   sensor1Ref.on('value', snap => currentUmidSensor1.innerText = snap.val());
-  //tensao1Ref.on('value', snap => currentTensoSensor1.innerText = snap.val());
+  //intensao1Ref.on('value', snap => currentTensoSensor1.innerText = snap.val());
   sensor2Ref.on('value', snap => currentUmidSensor2.innerText = snap.val());
   //tensao2Ref.on('value', snap => currentTensoSensor2.innerText = snap.val());
   
-  //umidRef.on('value', graficoCorrente('currentUmid', 'umidLineChart' , 'Umidade', '%'));
+
 
 
   // Registrar função ao alterar valor de presença
@@ -64,7 +64,7 @@
   chuvaRef.on('value', function(snapshot){
     var value = snapshot.val();
     var chuva = document.getElementById('currentChuva')
-    console.log("Nivel sensor chuva: ", value);
+    //console.log("Nivel sensor chuva: ", value);
     if(value == 1024){
       chuva.innerText = "TEMPO NORMAL"
     }else{
@@ -101,15 +101,19 @@
 // e monta o gráfico com os dados e descrição do tipo de dados (chartEl, label)
 function graficoCorrente(valorCorrenteEl, chartEl, label, metrica){
   return function(snapshot){
-    var lendo = snapshot.val();
-    if(lendo){
+    var valor = snapshot.val();
+    //console.log("Valor" ,valor)
+    if(valor){
+      console.log("Valor-TRUE" ,valor)
         var valorCorrente;
         var data = [];
-        for(var key in lendo){
-          valorCorrente = lendo[key]
+        for(var key in valor){
+          console.log("Valor[key]" ,key)
+          valorCorrente = valor[key]
           data.push(valorCorrente);
         }
-
+        //console.log("valorCorrenteEl" ,valorCorrenteEl)
+        //console.log("chartEl" ,chartEl)
         document.getElementById(valorCorrenteEl).innerText = valorCorrente + ' ' + metrica;
         buildLineChart(chartEl, label, data);
     }
