@@ -34,9 +34,9 @@
   tempRef.on('value', snap => currentTemp.innerText = snap.val());
   umidRef.on('value', snap => currentUmid.innerText = snap.val());
   sensor1Ref.on('value', snap => currentUmidSensor1.innerText = snap.val());
-  tensao1Ref.on('value', snap => currentTensoSensor1.innerText = snap.val());
+  //tensao1Ref.on('value', snap => currentTensoSensor1.innerText = snap.val());
   sensor2Ref.on('value', snap => currentUmidSensor2.innerText = snap.val());
-  tensao2Ref.on('value', snap => currentTensoSensor2.innerText = snap.val());
+  //tensao2Ref.on('value', snap => currentTensoSensor2.innerText = snap.val());
   
   //umidRef.on('value', graficoCorrente('currentUmid', 'umidLineChart' , 'Umidade', '%'));
 
