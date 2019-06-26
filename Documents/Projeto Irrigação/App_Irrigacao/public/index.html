@@ -8,44 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-  <style>
-    body {
-      background-color: #E0E0E0;
-    }
-
-    .content {
-      margin-top: 30px;
-    }
-
-    nav {
-      background-color: rgb(37, 147, 249);
-    }
-
-    .statistic {
-      font-size: 3em;
-      margin-top: 15px !important;
-    }
-
-    .card {
-      min-height: 100px;
-    }
-
-    .activator {
-      cursor: pointer;
-    }
-
-    @media screen and (max-width: 600px) {
-      .statistic {
-        font-size: 3em;
-      }
-    }
-
-    .text {
-      font-size: 3em;
-      margin-top: 15px !important;
-    }
-  </style>
-
+  <link rel="stylesheet" type="text/css" href="estilo.css">
 </head>
 
 <body>
@@ -69,8 +32,8 @@
           </div>
           <div class="card-content">
             <span class="card-title activator grey-text text-darken-4">
-              STATUS EM IRRIGAÇÃO
-              <!-- <i class="material-icons right">more_vert</i> -->
+              ÁREA EM IRRIGAÇÃO
+              <i class="material-icons left">access_time</i>
             </span>
           </div>
         </div>
@@ -83,6 +46,7 @@
           <div class="card-content">
             <span class="card-title activator grey-text text-darken-4">
               Temperatura
+              <i class="material-icons left">wb_sunny</i>
               <i class="material-icons right">more_vert</i>
             </span>
             Clique para ver histórico
@@ -104,6 +68,7 @@
           <div class="card-content activator">
             <span class="card-title grey-text text-darken-4">
               Umidade do ar
+              <i class="material-icons left">opacity</i>
               <i class="material-icons right">more_vert</i>
             </span>
             Clique para ver histórico
@@ -120,11 +85,12 @@
       <div class="col s12 m6">
         <div class="card">
           <div class="card-image center">
-            <span id="currentUmidSensor1" class="statistic">-</span>%
+            <span id="currentUmidSensor1" class="statistic">-</span>
           </div>
           <div class="card-content activator">
             <span class="card-title grey-text text-darken-4">
               Umidade do Solo (Sensor 1)
+              <i class="material-icons left">opacity</i>
               <i class="material-icons right">more_vert</i>
             </span>
             Clique para ver histórico
@@ -134,7 +100,7 @@
               Histórico
               <i class="material-icons right">close</i>
             </span>
-            <canvas id=""></canvas>
+            <canvas id="umidSensor1LineChart"></canvas>
           </div>
         </div>
       </div>
@@ -162,11 +128,12 @@
       <div class="col s12 m6">
         <div class="card">
           <div class="card-image center">
-            <span id="currentUmidSensor2" class="statistic">-</span>%
+            <span id="currentUmidSensor2" class="statistic">-</span>
           </div>
           <div class="card-content activator">
             <span class="card-title grey-text text-darken-4">
               Umidade do Solo (Sensor 2)
+              <i class="material-icons left">opacity</i>
               <i class="material-icons right">more_vert</i>
             </span>
             Clique para ver histórico
@@ -176,7 +143,7 @@
               Histórico
               <i class="material-icons right">close</i>
             </span>
-            <canvas id=""></canvas>
+            <canvas id="umidSensor2LineChart"></canvas>
           </div>
         </div>
       </div>
@@ -204,7 +171,7 @@
       <div class="col s12 m6">
         <div class="card">
           <div class="card-image center">
-            <span id="currentChuva" class="statistic">-</span>
+            <i id="currentChuva" class="material-icons statistic">-</i>
           </div>
           <div class="card-content activator">
             <span class="card-title grey-text text-darken-4">

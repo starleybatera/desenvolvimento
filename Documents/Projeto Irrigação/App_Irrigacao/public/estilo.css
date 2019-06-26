@@ -1,0 +1,35 @@
+body {
+    background-color: #E0E0E0;
+  }
+
+  .content {
+    margin-top: 30px;
+  }
+
+  nav {
+    background-color: rgb(37, 147, 249);
+  }
+
+  .statistic {
+    font-size: 3em;
+    margin-top: 15px !important;
+  }
+
+  .card {
+    min-height: 100px;
+  }
+
+  .activator {
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 600px) {
+    .statistic {
+      font-size: 3em;
+    }
+  }
+
+  .text {
+    font-size: 3em;
+    margin-top: 15px !important;
+  }

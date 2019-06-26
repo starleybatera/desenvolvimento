@@ -28,29 +28,18 @@
 
 
   
-  //tempRef.on('value', graficoCorrente('currentTemp', 'tempLineChart' , 'Temperatura', 'C°'));
-  //umidRef.on('value', graficoCorrente('currentUmid', 'umidLineChart' , 'Umidade', '%'));
+  tempRef.on('value', dadosCorrente('currentTemp', 'tempLineChart' , 'Temperatura', 'C°'));
+  umidRef.on('value', dadosCorrente('currentUmid', 'umidLineChart' , 'Umidade', '%'));
+  sensor1Ref.on('value', dadosCorrente('currentUmidSensor1', 'umidSensor1LineChart' , 'Umidade', '%'));
+  sensor2Ref.on('value', dadosCorrente('currentUmidSensor2', 'umidSensor2LineChart' , 'Umidade', '%'));
   //chuvaRef.on('value', snap => currentChuva.innerText = snap.val());
-  tempRef.on('value', snap => currentTemp.innerText = snap.val());
-  umidRef.on('value', snap => currentUmid.innerText = snap.val());
-  sensor1Ref.on('value', snap => currentUmidSensor1.innerText = snap.val());
+  //tempRef.on('value', snap => currentTemp.innerText = snap.val());
+  //umidRef.on('value', snap => currentUmid.innerText = snap.val());
+  //sensor1Ref.on('value', snap => currentUmidSensor1.innerText = snap.val());
   //intensao1Ref.on('value', snap => currentTensoSensor1.innerText = snap.val());
-  sensor2Ref.on('value', snap => currentUmidSensor2.innerText = snap.val());
+  //sensor2Ref.on('value', snap => currentUmidSensor2.innerText = snap.val());
   //tensao2Ref.on('value', snap => currentTensoSensor2.innerText = snap.val());
   
-
-
-
-  // Registrar função ao alterar valor de presença
-  // presenceRef.on('value', function(snapshot){
-  //   var value = snapshot.val();
-  //   var el = document.getElementById('currentPresence')
-  //   if(value){
-  //     el.classList.add('green-text');
-  //   }else{
-  //     el.classList.remove('green-text');
-  //   }
-  // });
 
   // // Registrar função ao alterar valor do Piquete q está sendo irrigado
   
@@ -65,10 +54,10 @@
     var value = snapshot.val();
     var chuva = document.getElementById('currentChuva')
     //console.log("Nivel sensor chuva: ", value);
-    if(value == 1024){
-      chuva.innerText = "TEMPO NORMAL"
+    if(value > 800){
+      chuva.innerText = "wb_sunny"
     }else{
-      chuva.innerText =  "TEMPO CHUVOSO !"
+      chuva.innerText =  "wb_cloudy"
     }
     
   });
@@ -96,41 +85,36 @@
 })();
 
 
-// Retorna uma função que de acordo com as mudanças dos dados
-// Atualiza o valor atual do elemento, com a metrica passada (valorCorrenteEl e metrica)
-// e monta o gráfico com os dados e descrição do tipo de dados (chartEl, label)
-function graficoCorrente(valorCorrenteEl, chartEl, label, metrica){
+function dadosCorrente(id_corrente, id_grafico, texto, metrica){
   return function(snapshot){
     var valor = snapshot.val();
-    //console.log("Valor" ,valor)
-    if(valor){
-      console.log("Valor-TRUE" ,valor)
-        var valorCorrente;
-        var data = [];
-        for(var key in valor){
-          console.log("Valor[key]" ,key)
-          valorCorrente = valor[key]
-          data.push(valorCorrente);
-        }
-        //console.log("valorCorrenteEl" ,valorCorrenteEl)
-        //console.log("chartEl" ,chartEl)
-        document.getElementById(valorCorrenteEl).innerText = valorCorrente + ' ' + metrica;
-        buildLineChart(chartEl, label, data);
-    }
+    console.log("ID_corrente: " ,id_corrente)
+    console.log("Valor: " ,valor)
+    //if(valor){
+      //console.log("Valor-TRUE" ,valor)
+        // var valorCorrente;
+        var dados = [];
+        // for(var key in valor){
+        //   console.log("Valor[key]" ,key)
+        //   valorCorrente = valor[key]
+        //   dados.push(valorCorrente);
+        // }
+        
+        document.getElementById(id_corrente).innerText = valor + ' ' + metrica;
+        criarGrafico(id_grafico, texto, dados);
+    //}
   }
 }
 
-// Constroi um gráfico de linha no elemento (el) com a descrição (label) e os
-// dados passados (data)
-function buildLineChart(el, label, data){
-  var elNode = document.getElementById(el);
-  new Chart(elNode, {
+function criarGrafico(id_grafico, texto, dados){
+  var no = document.getElementById(id_grafico);
+  new Chart(no, {
     type: 'line',
-    data: {
-        labels: new Array(data.length).fill(""),
+    dados: {
+        labels: new Array(dados.length).fill(""),
         datasets: [{
-            label: label,
-            data: data,
+            texto: texto,
+            dados: dados,
             borderWidth: 1,
             fill: false,
             spanGaps: false,
