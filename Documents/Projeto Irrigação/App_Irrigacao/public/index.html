@@ -31,13 +31,50 @@
             <span id="currentIrrigando" class="text">-</span>
           </div>
           <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">
-              ÁREA EM IRRIGAÇÃO
-              <i class="material-icons left">access_time</i>
+              <span id="tempo" class="cronometro"><b>00</b>h <b>00</b>m <b>00</b>s</span>
+              <span class="card-title activator grey-text text-darken-4">
+                  ÁREA EM IRRIGAÇÃO
             </span>
           </div>
         </div>
       </div>
+      <div class="col s12 m6">
+          <div class="card" style="padding-bottom:20px">
+            <div class="card-image center">
+              <i id="currentBomb" class="material-icons statistic">flash_on</i>
+            </div>
+            <div class="card-content">
+              <span class="card-title grey-text text-darken-4">
+                Bomba D'Água
+              </span>
+              <a class="waves-effect waves-light btn col s12 disabled"  id="btn-bomb">
+                <i class="material-icons left">flash_on</i> 
+                acionamento
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6">
+            <div class="card">
+              <div class="card-image center">
+                <i id="currentChuva" class="material-icons statistic">-</i>
+              </div>
+              <div class="card-content activator">
+                <span class="card-title grey-text text-darken-4">
+                  Condição do Tempo
+                  <i class="material-icons right">more_vert</i>
+                </span>
+                Clique para ver histórico
+              </div>
+              <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">
+                  Histórico
+                  <i class="material-icons right">close</i>
+                </span>
+                <canvas id=""></canvas>
+              </div>
+            </div>
+          </div>
       <div class="col s12 m6">
         <div class="card">
           <div class="card-image center">
@@ -168,43 +205,7 @@
             </div>
           </div>
         </div> -->
-      <div class="col s12 m6">
-        <div class="card">
-          <div class="card-image center">
-            <i id="currentChuva" class="material-icons statistic">-</i>
-          </div>
-          <div class="card-content activator">
-            <span class="card-title grey-text text-darken-4">
-              Condição do Tempo
-              <i class="material-icons right">more_vert</i>
-            </span>
-            Clique para ver histórico
-          </div>
-          <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">
-              Histórico
-              <i class="material-icons right">close</i>
-            </span>
-            <canvas id=""></canvas>
-          </div>
-        </div>
-      </div>
-      <div class="col s12 m6">
-        <div class="card" style="padding-bottom:30px">
-          <div class="card-image center">
-            <i id="currentBomb" class="material-icons statistic">flash_on</i>
-          </div>
-          <div class="card-content">
-            <span class="card-title grey-text text-darken-4">
-              Bomba D'Água
-            </span>
-            <a class="waves-effect waves-light btn col s12" id="btn-bomb">
-              <i class="material-icons left">flash_on</i>
-              Ligar/Desligar
-            </a>
-          </div>
-        </div>
-      </div>
+      
     </div>
   </div>
 </body>
