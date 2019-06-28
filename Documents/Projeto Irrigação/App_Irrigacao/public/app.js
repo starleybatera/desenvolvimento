@@ -184,7 +184,7 @@ function formatatempo(segs) {
   if (segs < 10) { segs = "0" + segs }
 
   fin = `<b>${hr}</b>h <b>${min}</b>m <b>${segs}</b>s`;
-  db.ref('servidor/cronometro').set();
+  db.ref('servidor/cronometro').set(fin);
   return fin;
 
 }
