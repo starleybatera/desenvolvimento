@@ -1,30 +1,33 @@
+// Inicia o firebase Firebase
+var config = {
+  apiKey: "AIzaSyDoFUDsBBndpzLjcXI4i6eGbc3X2vymVRY",
+  authDomain: "sistema-de-irrigacao.firebaseapp.com",
+  databaseURL: "https://sistema-de-irrigacao.firebaseio.com",
+  projectId: "sistema-de-irrigacao",
+  storageBucket: "sistema-de-irrigacao.appspot.com",
+  messagingSenderId: "1017790599393",
+  appId: "1:1017790599393:web:b516fffbff3580f1"
+};
+firebase.initializeApp(config);
+
+var db = firebase.database();
+
+
 
 (function () {
 
-  // Inicia o firebase Firebase
-  var config = {
-    apiKey: "AIzaSyDoFUDsBBndpzLjcXI4i6eGbc3X2vymVRY",
-    authDomain: "sistema-de-irrigacao.firebaseapp.com",
-    databaseURL: "https://sistema-de-irrigacao.firebaseio.com",
-    projectId: "sistema-de-irrigacao",
-    storageBucket: "sistema-de-irrigacao.appspot.com",
-    messagingSenderId: "1017790599393",
-    appId: "1:1017790599393:web:b516fffbff3580f1"
-  };
-  firebase.initializeApp(config);
-
-  var db = firebase.database();
-
+  
   // Cria os listeners dos dados no firebase
-  var chuvaRef = db.ref('sensor_chuva');
-  var tempRef = db.ref('sensor_T');
-  var umidRef = db.ref('sensor_H');
-  var sensor1Ref = db.ref('sensor1_H');
-  var tensao1Ref = db.ref('sensor1_T');
-  var sensor2Ref = db.ref('sensor2_H');
-  var tensao2Ref = db.ref('sensor2_T');
-  var piquete_irrigandoRef = db.ref('piquete_irrigando');
-  var bombRef = db.ref('bomba');
+  var chuvaRef = db.ref('servidor/sensor_chuva');
+  var tempRef = db.ref('servidor/sensor_T');
+  var umidRef = db.ref('servidor/sensor_H');
+  var sensor1Ref = db.ref('sensor1/sensor1_H');
+  var tensao1Ref = db.ref('sensor1/sensor1_T');
+  var sensor2Ref = db.ref('sensor2/sensor2_H');
+  var tensao2Ref = db.ref('sensor2/sensor2_T');
+  var piquete_irrigandoRef = db.ref('servidor/piquete_irrigando');
+  var bombRef = db.ref('servidor/bomba');
+  
 
 
 
@@ -181,7 +184,9 @@ function formatatempo(segs) {
   if (segs < 10) { segs = "0" + segs }
 
   fin = `<b>${hr}</b>h <b>${min}</b>m <b>${segs}</b>s`;
+  db.ref('servidor/cronometro').set();
   return fin;
+
 }
 var segundos = 0; //inicio do cronometro
 var interval;
