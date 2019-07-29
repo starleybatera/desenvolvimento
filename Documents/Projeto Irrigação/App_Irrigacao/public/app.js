@@ -101,7 +101,7 @@ var db = firebase.database();
     var bomb = document.getElementById('currentBomb')
     if (value) {
       bomb.classList.add('amber-text');
-      inicia();
+      // inicia();
     } else {
       bomb.classList.remove('amber-text');
     }
@@ -170,54 +170,54 @@ function criarGrafico(id_grafico, texto, dados) {
 
 
 
-function formatatempo(segs) {
-  min = 0;
-  hr = 0;
+// function formatatempo(segs) {
+//   min = 0;
+//   hr = 0;
 
-  while (segs >= 60) {
-    if (segs >= 60) {
-      segs = segs - 60;
-      min = min + 1;
-    }
-  }
+//   while (segs >= 60) {
+//     if (segs >= 60) {
+//       segs = segs - 60;
+//       min = min + 1;
+//     }
+//   }
 
-  while (min >= 60) {
-    if (min >= 60) {
-      min = min - 60;
-      hr = hr + 1;
-    }
-  }
+//   while (min >= 60) {
+//     if (min >= 60) {
+//       min = min - 60;
+//       hr = hr + 1;
+//     }
+//   }
 
-  if (hr < 10) { hr = "0" + hr }
-  if (min < 10) { min = "0" + min }
-  if (segs < 10) { segs = "0" + segs }
+//   if (hr < 10) { hr = "0" + hr }
+//   if (min < 10) { min = "0" + min }
+//   if (segs < 10) { segs = "0" + segs }
 
-  fin = `<b>${hr}</b>h <b>${min}</b>m <b>${segs}</b>s`;
-  db.ref('servidor/cronometro').set(fin);
-  return fin;
+//   fin = `<b>${hr}</b>h <b>${min}</b>m <b>${segs}</b>s`;
+//   db.ref('servidor/cronometro').set(fin);
+//   return fin;
 
-}
-var segundos = 0; //inicio do cronometro
-var interval;
+// }
+// var segundos = 0; //inicio do cronometro
+// var interval;
 
-function conta() {
-  segundos++;
-  document.getElementById("tempo").innerHTML = formatatempo(segundos);
-}
+// function conta() {
+//   segundos++;
+//   document.getElementById("tempo").innerHTML = formatatempo(segundos);
+// }
 
-function inicia() {
-  interval = setInterval("conta();", 1000);
-}
+// function inicia() {
+//   interval = setInterval("conta();", 1000);
+// }
 
-function para() {
-  clearInterval(interval);
-}
+// function para() {
+//   clearInterval(interval);
+// }
 
-function zera() {
-  clearInterval(interval);
-  segundos = 0;
-  document.getElementById("tempo").innerHTML = formatatempo(segundos);
-}
+// function zera() {
+//   clearInterval(interval);
+//   segundos = 0;
+//   document.getElementById("tempo").innerHTML = formatatempo(segundos);
+// }
 
 
 
