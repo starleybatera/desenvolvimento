@@ -1,6 +1,6 @@
 
 
-// ATUALIZAÇÃO 12/06/2019
+// ATUALIZAÇÃO 27/06/2019
 
 /*------------------------------------DECLARAÇÃO DOS INCLUDES----------------------------------------------------------------------------*/
 #include <ESP8266WiFi.h>
@@ -154,15 +154,15 @@ void loop()
         Blynk.virtualWrite(V11,h);
         
         Blynk.virtualWrite(V10,t);
-        Firebase.setFloat("sensor_H", h);
-        Firebase.setFloat("sensor_T", t);
+        Firebase.setFloat("servidor/sensor_H", h);
+        Firebase.setFloat("servidor/sensor_T", t);
         delay(800);
   
 /*------SENSOR DE CHUVA--------------------------------------*/            
        int chuva = analogRead(pinChuva);
         Blynk.virtualWrite(V12,chuva);
         lcdVirtual.clear();
-        Firebase.setFloat("sensor_chuva", chuva);
+        Firebase.setFloat("servidor/sensor_chuva", chuva);
         if(chuva < 600){
            lcdVirtual.print(4,0, "SISTEMA");
            lcdVirtual.print(2,1, "DESATIVADO !!");
@@ -213,12 +213,16 @@ if(EstaIrrigando() && irrigando->hum < 20){ // ESTÁ IRRIGANDO E SENSOR ATUALIZA
   Blynk.virtualWrite(V6, irrigando->hum);
   Blynk.virtualWrite(V7, irrigando->volt);
 
-  Firebase.setFloat("sensor1_H", hum);.
+  String piquete = irrigando->sen;
+  
+  Firebase.setString("/servidor/piquete_irrigando", piquete);
   delay(1000);
 }
 if(!EstaIrrigando() && listaSensores.size() == 0 ){ // NÃO ESTÁ IRRIGANDO E  TAM LISTA É IGUAL QUE 0
   lcdVirtual.print(4,0, "PIQUETES ");
   lcdVirtual.print(3,1, "IRRIGADOS !! ");
+
+  Firebase.setString("/servidor/piquete_irrigando", "PIQUETES IRRIGADOS !!");
 }
     
 }
@@ -346,6 +350,8 @@ void ParardeIrrigar(String setor){
    digitalWrite(pinValvula_Sensor_2, HIGH);
    delay(3000);
    digitalWrite(pinValvula_Bomba, HIGH);
+
+   Firebase.setString("/servidor/piquete_irrigando", "SISTEMA DESATIVADO");
   }
 }
 /*------------------------------------------------------------------------------------------------------------------------*/
@@ -360,9 +366,8 @@ void AtualizarBanco(String sen, int hum, float volt){
 // ATUALIZANDO DADOS NO BANCO DE DADOS FIREBASE
 
   if(sen.equals("SENSOR 1")){
-    Firebase.setFloat("sensor1_H", hum);
-    Firebase.setFloat("sensor1_T", volt);
-    Serial.print("ENTROU NO IF SENSOR 1: ");
+    Firebase.setFloat("sensor1/sensor1_H", hum);
+    Firebase.setFloat("sensor1/sensor1_T", volt);
     Serial.print(sen);
     Serial.print(" : ");
     Serial.print(hum);
@@ -371,9 +376,8 @@ void AtualizarBanco(String sen, int hum, float volt){
     
   }
   if(sen.equals("SENSOR 2")){
-    Firebase.setFloat("sensor2_H", hum);
-    Firebase.setFloat("sensor2_T", volt);
-    Serial.print("ENTROU NO IF SENSOR 2: ");
+    Firebase.setFloat("sensor2/sensor2_H", hum);
+    Firebase.setFloat("sensor2/sensor2_T", volt);
     Serial.print(sen);
     Serial.print(" : ");
     Serial.print(hum);

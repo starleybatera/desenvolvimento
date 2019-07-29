@@ -35,8 +35,10 @@ body {
   }
 
   .cronometro{
-    margin-left:340px;
-	  margin-right:200px;
-	  text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     font-size: 3em;
     }
