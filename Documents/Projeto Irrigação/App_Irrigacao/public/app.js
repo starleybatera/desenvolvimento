@@ -16,25 +16,25 @@
   var db = firebase.database();
 
   // Cria os listeners dos dados no firebase
-  var chuvaRef = db.ref('sensor_chuva');
-  var tempRef = db.ref('sensor_T');
-  var umidRef = db.ref('sensor_H');
-  var sensor1Ref = db.ref('sensor1_H');
-  var tensao1Ref = db.ref('sensor1_T');
-  var sensor2Ref = db.ref('sensor2_H');
-  var tensao2Ref = db.ref('sensor2_T');
-  var piquete_irrigandoRef = db.ref('piquete_irrigando');
-  var bombRef = db.ref('bomba');
+  // var chuvaRef = db.ref('sensor_chuva');
+  // var tempRef = db.ref('sensor_T');
+  // var umidRef = db.ref('sensor_H');
+  // var sensor1Ref = db.ref('sensor1_H');
+  // var tensao1Ref = db.ref('sensor1_T');
+  // var sensor2Ref = db.ref('sensor2_H');
+  // var tensao2Ref = db.ref('sensor2_T');
+  // var piquete_irrigandoRef = db.ref('piquete_irrigando');
+  // var bombRef = db.ref('bomba');
 
 
 
-  // var chuvaRef = db.ref('servidor/sensor_chuva');
-  // var tempRef = db.ref('servidor/sensor_T');
-  // var umidRef = db.ref('servidor/sensor_H');
-  // var piquete_irrigandoRef = db.ref('servidor/piquete_irrigando');
-  // var bombRef = db.ref('servidor/bomba');
-  // var sensor1Ref = db.ref('sensor1/sensor1_H');
-  // var sensor2Ref = db.ref('sensor2/sensor2_H');
+  var chuvaRef = db.ref('servidor/sensor_chuva');
+  var tempRef = db.ref('servidor/sensor_T');
+  var umidRef = db.ref('servidor/sensor_H');
+  var piquete_irrigandoRef = db.ref('servidor/piquete_irrigando');
+  var bombRef = db.ref('servidor/bomba');
+  var sensor1Ref = db.ref('sensor1/sensor1_H');
+  var sensor2Ref = db.ref('sensor2/sensor2_H');
 
 
 
@@ -61,12 +61,12 @@
     console.log("VALUE", value);
     var aux = value;
     var piquete = document.getElementById('currentIrrigando')
-    if(aux != piquete.innerText){
-      zera();
-    }
+    // if(aux != piquete.innerText){
+    //   zera();
+    // }
     piquete.innerText = value
     console.log("piquete.innerText", piquete.innerText);
-    inicia();
+    // inicia();
   });
 
   // // Registrar função ao alterar valor do status do clima
